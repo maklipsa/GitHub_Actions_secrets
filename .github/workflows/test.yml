@@ -17,11 +17,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Get Cli_secret1
-        run: "CLI_SECRET1: ${{ secrets.GITHUB_TOKEN }}"
+        run: echo "CLI_SECRET1: ${{ secrets.CLI_SECRET1 }}"
 
       - name: Get Cli_secret2
         run: |
-          echo $CLI_SECRET2 >> some_secret.txt
+          echo "CLI_SECRET2: ${{ secrets.CLI_SECRET1 }} >> some_secret.txt
       
       - uses: actions/upload-artifact@v4
         with:
