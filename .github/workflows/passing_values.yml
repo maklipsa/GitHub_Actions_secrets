@@ -18,7 +18,7 @@ jobs:
       - name: Make a sentence
         id: sentence_maker
         run: |
-          echo "SENTENCE='Ala ma kota $name'" >> $GITHUB_OUTPUT
+          echo "SENTENCE='Ala ma kota Ptysia'" >> $GITHUB_OUTPUT
       
       - name: Set color
         id: color-selector
