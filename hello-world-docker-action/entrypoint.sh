@@ -3,4 +3,4 @@
 echo "Hello $1"
 time=$(date)
 echo "time=$time" >> $GITHUB_OUTPUT
-echo "time=$time" >> output.txt #⬅️ Zapis do pliku
+echo "time=$time" >> docker_action_output.txt #⬅️ Zapis do pliku
