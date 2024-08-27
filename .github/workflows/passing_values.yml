@@ -30,7 +30,11 @@ jobs:
         id: sentence_maker
         run: |
           echo "SENTENCE='Ala ma kota Ptysia'" >> $GITHUB_OUTPUT
-      
+      - id: echo
+        env:
+          a: ${{ steps.sentence_maker.SENTENCE }}
+        run: |
+          echo $a
 
   consumer:
     needs: [producer]
