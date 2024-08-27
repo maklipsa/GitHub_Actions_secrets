@@ -20,21 +20,19 @@ jobs:
         run: echo "The selected color is $COLOR"
         
   producer:
-    env:
-      name: "Ptyś"
     runs-on: ubuntu-latest
-    outputs:
-      full_sentence: ${{ steps.sentence_maker.outputs.SENTENCE }}
     steps:
       - name: Make a sentence
         id: sentence_maker
         run: |
           echo "SENTENCE='Ala ma kota Ptysia'" >> $GITHUB_OUTPUT
-      - id: echo
+      - id: echo # Tylko do debugowania
         env:
-          a: ${{ steps.sentence_maker.outputs.SENTENCE }}
+          message_to_echo: ${{ steps.sentence_maker.outputs.SENTENCE }}
         run: |
-          echo $a
+          echo $message_to_echo
+    outputs:
+      full_sentence: ${{ steps.sentence_maker.outputs.SENTENCE }}
 
   consumer:
     needs: [producer]
