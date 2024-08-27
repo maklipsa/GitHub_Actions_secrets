@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: pg20240828training/GitHub_Actions_secrets/my-composite-action@composite-v4 #⬅️ Zmienić OWNER i TAG na poprawne wartości
+        uses: pg20240828training/GitHub_Actions_secrets/my-composite-action@latest #⬅️ Zmienić OWNER i TAG na poprawne wartości
         with:
           who-to-greet: <WPISZ_SWOJE_IMIĘ> #⬅️ Uwaga
       - run: echo random-number "$RANDOM_NUMBER"
