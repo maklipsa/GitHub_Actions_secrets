@@ -1,32 +1,40 @@
-# This is a basic workflow to help you get started with Actions
-
-name: vars
-
 on:
   workflow_dispatch:
 env:
-  # Setting an environment variable with the value of a configuration variable
-  env_var: "dupa"
-  DAY_OF_WEEK: Monday
+  cat_name: "Puszek"
+  WORKFLOW_VAR: "workflow var"
   
 jobs:
   display-variables:
-    runs-on: ubuntu-latest
-    steps:
-    - name: a
-      uses: actions/hello-world-javascript-action@main
-      with:
-        who-to-greet: ${{ env.env_var }}
-    - name: b
-      run: |
-        echo "env_var: $env_var"
-  greeting_job:
+    name: aa
     runs-on: ubuntu-latest
     env:
-      Greeting: Hello
+      JOB_VAR: "job"
     steps:
-      - name: "Say Hello Mona it's Monday"
-        if: ${{ env.DAY_OF_WEEK == 'Monday' }}
-        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
-        env:
-          First_Name: Mona
+    - name: Use variables 1
+      env:
+        STEP_VAR: "step"
+      run: |
+        echo "Repository variable : $REPOSITORY_VAR"
+        echo "Organization variable : $ORGANIZATION_VAR"
+        echo "Environment variable : $ENVIRONMENT_VAR"
+        echo "Ala ma kota o nazwie <WYPISZ TU IMIĘ KOTA ZAPISANE W ZMIENNEJ cat_name>"
+        echo "Powinna być zmienna w scopie workflow:$WORKFLOW_VAR"
+        echo "Powinna być zmienna w scopie joba:$JOB_VAR"
+        echo "Powinna być zmienna w scopie stepu:$STEP_VAR"
+    
+    - name: Use variables 1
+      run: |
+        echo "Ala ma kota o nazwie <WYPISZ TU IMIĘ KOTA ZAPISANE W ZMIENNEJ cat_name>"
+        echo "Powinna być zmienna w scopie workflow:$WORKFLOW_VAR"
+        echo "Powinna być zmienna w scopie joba:$JOB_VAR"
+        echo "NIE powinna być zmienna w scopie stepu:$STEP_VAR"
+
+  display-variables2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use variables in display-variables2
+      run: |
+        echo "Powinna być zmienna w scopie workflow:$WORKFLOW_VAR"
+        echo "NIE powinna być zmienna w scopie joba:$JOB_VAR"
+        echo "NIE powinna być zmienna w scopie stepu:$STEP_VAR"
