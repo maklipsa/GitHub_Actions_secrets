@@ -6,11 +6,11 @@ name: passing job values
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-env:
-  name: "Ptyś"
   
 jobs:
   producer:
+    env:
+      name: "Ptyś"
     runs-on: ubuntu-latest
     outputs:
       full_sentence: ${{ steps.producer.sentence_maker.SENTENCE }}
@@ -20,7 +20,7 @@ jobs:
         run: |
           echo "SENTENCE=Ala ma kota $name" >> $GITHUB_OUTPUT
 
-  publish:
+  consumer:
     needs: [producer]
     runs-on: ubuntu-latest
     env:
