@@ -7,7 +7,8 @@ on:
 env:
   # Setting an environment variable with the value of a configuration variable
   env_var: "dupa"
-
+  DAY_OF_WEEK: Monday
+  
 jobs:
   display-variables:
     runs-on: ubuntu-latest
@@ -19,3 +20,13 @@ jobs:
     - name: b
       run: |
         echo "env_var: $env_var"
+  greeting_job:
+    runs-on: ubuntu-latest
+    env:
+      Greeting: Hello
+    steps:
+      - name: "Say Hello Mona it's Monday"
+        if: ${{ env.DAY_OF_WEEK == 'Monday' }}
+        run: echo "$Greeting $First_Name. Today is $DAY_OF_WEEK!"
+        env:
+          First_Name: Mona
