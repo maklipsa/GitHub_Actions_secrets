@@ -32,7 +32,7 @@ jobs:
           echo "SENTENCE='Ala ma kota Ptysia'" >> $GITHUB_OUTPUT
       - id: echo
         env:
-          a: ${{ steps.sentence_maker.full_sentence }}
+          a: ${{ steps.sentence_maker.outputs.full_sentence }}
         run: |
           echo $a
 
