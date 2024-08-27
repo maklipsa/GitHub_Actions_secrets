@@ -47,7 +47,7 @@ jobs:
           echo $SENTENCE
 
 
-  check-pr:
+  set-pr:
     runs-on: ubuntu-latest
     outputs:
       pr-number: ${{ steps.check-prs.outputs.PR_NUMBER }}
@@ -59,14 +59,13 @@ jobs:
           echo "PR_NUMBER=dupa" >> $GITHUB_OUTPUT
 
   publish:
-    needs: [check-pr]
+    needs: [set-pr]
     runs-on: ubuntu-latest
     env:
-      PR_NUMBER: ${{ needs.check-pr.outputs.pr-number }}
+      PR_NUMBER: ${{ needs.set-pr.outputs.pr-number }}
     steps:
     - name: Check PRs
       id: print-prs
       run: |
-        # ...
         echo $PR_NUMBER
 
