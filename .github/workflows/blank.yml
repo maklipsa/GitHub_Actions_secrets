@@ -17,7 +17,5 @@ jobs:
       with:
         who-to-greet: ${{ env.env_var }}
     - name: b
-      env:
-        secret : ${{secrets.CLI_SECRET2}}
       run: |
         echo "env_var: $env_var"
