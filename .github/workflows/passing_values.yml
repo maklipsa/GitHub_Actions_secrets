@@ -58,7 +58,7 @@ jobs:
           # ...
           echo "PR_NUMBER=dupa" >> $GITHUB_OUTPUT
 
-  publish:
+  get-pr:
     needs: [set-pr]
     runs-on: ubuntu-latest
     env:
