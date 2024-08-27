@@ -32,7 +32,7 @@ jobs:
           echo "SENTENCE='Ala ma kota Ptysia'" >> $GITHUB_OUTPUT
       - id: echo
         env:
-          a: ${{ steps.sentence_maker.SENTENCE }}
+          a: ${{ steps.sentence_maker.full_sentence }}
         run: |
           echo $a
 
@@ -45,3 +45,21 @@ jobs:
       - name: Print a sentence
         run: |
           echo $SENTENCE
+
+
+  check-pr:
+    runs-on: ubuntu-latest
+    outputs:
+      pr-number: ${{ steps.check-prs.outputs.PR_NUMBER }}
+    steps:
+      - name: Check PRs
+        id: check-prs
+        run: |
+          # ...
+          echo "PR_NUMBER=dupa" >> $GITHUB_OUTPUT
+
+  publish:
+    needs: [check-pr]
+    runs-on: ubuntu-latest
+    env:
+      PR_NUMBER: ${{ needs.check-pr.outputs.pr-number }}
