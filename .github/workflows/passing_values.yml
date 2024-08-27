@@ -24,7 +24,7 @@ jobs:
       name: "Ptyś"
     runs-on: ubuntu-latest
     outputs:
-      full_sentence: ${{ steps.sentence_maker.SENTENCE }}
+      full_sentence: ${{ steps.sentence_maker.outputs.SENTENCE }}
     steps:
       - name: Make a sentence
         id: sentence_maker
@@ -40,11 +40,11 @@ jobs:
     needs: [producer]
     runs-on: ubuntu-latest
     env:
-      SENTENCE: ${{ needs.producer.outputs.full_sentence }}
+      message: ${{ needs.producer.outputs.full_sentence }}
     steps:
-      - name: Print a sentence
+      - name: Print the message
         run: |
-          echo $SENTENCE
+          echo $message
 
 
   set-pr:
