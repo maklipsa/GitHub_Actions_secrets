@@ -8,6 +8,17 @@ on:
   workflow_dispatch:
   
 jobs:
+  pass_in_one_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set color
+        id: color-selector
+        run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+      - name: Get color
+        env:
+          SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
+        run: echo "The selected color is $SELECTED_COLOR"
+        
   producer:
     env:
       name: "Ptyś"
@@ -20,13 +31,7 @@ jobs:
         run: |
           echo "SENTENCE='Ala ma kota Ptysia'" >> $GITHUB_OUTPUT
       
-      - name: Set color
-        id: color-selector
-        run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
-      - name: Get color
-        env:
-          SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
-        run: echo "The selected color is $SELECTED_COLOR"
+
   consumer:
     needs: [producer]
     runs-on: ubuntu-latest
