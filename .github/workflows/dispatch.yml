@@ -15,9 +15,13 @@ on:
         description: 'Test scenario tags'
         required: false
         type: boolean
-      matrix:
+      environment:
         description: 'Environment to run tests against'
         type: environment
+        required: true
+      matrix:
+        description: 'matrix parameter'
+        type: string
         required: true
 
 jobs:
