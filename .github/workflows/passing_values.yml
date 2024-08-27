@@ -16,8 +16,8 @@ jobs:
         run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
       - name: Get color
         env:
-          SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
-        run: echo "The selected color is $SELECTED_COLOR"
+          COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
+        run: echo "The selected color is $COLOR"
         
   producer:
     env:
@@ -45,27 +45,4 @@ jobs:
       - name: Print the message
         run: |
           echo $message
-
-
-  set-pr:
-    runs-on: ubuntu-latest
-    outputs:
-      pr-number: ${{ steps.check-prs.outputs.PR_NUMBER }}
-    steps:
-      - name: Check PRs
-        id: check-prs
-        run: |
-          # ...
-          echo "PR_NUMBER='dupa blada'" >> $GITHUB_OUTPUT
-
-  get-pr:
-    needs: [set-pr]
-    runs-on: ubuntu-latest
-    env:
-      PR_NUMBER: ${{ needs.set-pr.outputs.pr-number }}
-    steps:
-    - name: Check PRs
-      id: print-prs
-      run: |
-        echo $PR_NUMBER
 
