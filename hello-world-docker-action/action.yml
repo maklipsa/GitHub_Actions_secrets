@@ -1,0 +1,16 @@
+# action.yml
+name: 'Hello World' #⬅️ Nazwa akcji
+description: 'Greet someone and record the time' #⬅️Opis
+inputs: #⬅️ Inputy
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs: #⬅️ Outputy
+  time: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker' #⬅️ Deklaracja, że to akcja Docker
+  image: 'Dockerfile' #⬅️ Co uruchomić
+  args:
+    - ${{ inputs.who-to-greet }} #⬅️ Parametry uruchomienia Dockera
