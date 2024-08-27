@@ -56,7 +56,7 @@ jobs:
         id: check-prs
         run: |
           # ...
-          echo "PR_NUMBER=dupa" >> $GITHUB_OUTPUT
+          echo "PR_NUMBER='dupa blada'" >> $GITHUB_OUTPUT
 
   get-pr:
     needs: [set-pr]
