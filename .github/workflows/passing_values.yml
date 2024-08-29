@@ -9,7 +9,7 @@ on:
   
 jobs:
   pass_in_one_job:
-    runs-on: ubuntu-latest
+    runs-on: ptys
     steps:
       - name: Set color
         id: color-selector
@@ -20,7 +20,7 @@ jobs:
         run: echo "The selected color is $COLOR"
         
   producer:
-    runs-on: ubuntu-latest
+    runs-on: ptys
     steps:
       - name: Make a sentence
         id: sentence_maker
@@ -36,7 +36,7 @@ jobs:
 
   consumer:
     needs: [producer]
-    runs-on: ubuntu-latest
+    runs-on: ptys
     env:
       message: ${{ needs.producer.outputs.full_sentence }}
     steps:
@@ -46,7 +46,7 @@ jobs:
 
   job_1:
     name: Add 3 and 7
-    runs-on: ubuntu-latest
+    runs-on: ptys
     steps:
       - shell: bash
         run: |
